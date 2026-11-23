@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>EcoTrack - Eco Rewards</title>
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f1f8e9;
+}
+
+nav {
+    background-color: #2e7d32;
+    padding: 15px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 18px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    text-align: center;
+    padding: 40px;
+}
+
+h1 {
+    color: #2e7d32;
+    font-size: 36px;
+}
+
+.card {
+    background-color: white;
+    width: 300px;
+    margin: 25px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px gray;
+}
+
+.points {
+    font-size: 45px;
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+.badge {
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.info {
+    font-size: 17px;
+    color: #555;
+    margin: 10px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<a href="/Ecotrack/index.html">🏠 Home</a>
+
+<a href="/Ecotrack/carbon.html">
+🌍 Carbon Tracker
+</a>
+
+<a href="/Ecotrack/recycling.html">
+♻️ Recycling
+</a>
+
+<a href="/Ecotrack/activities.html">
+🌱 Eco Activities
+</a>
+
+<a href="/Ecotrack/progress.html">
+📊 Progress
+</a>
+
+<a href="/Ecotrack/rewards.html">
+🏆 Rewards
+</a>
+
+</nav>
+
+
+<div class="container">
+
+<h1>🏆 Eco Rewards</h1>
+
+<div class="card">
+
+<div class="points" id="points">
+0
+</div>
+
+<p>Eco Points</p>
+
+<div class="badge" id="badge">
+🌱 Eco Beginner
+</div>
+
+<p class="info">
+Complete eco-friendly activities and recycle
+to earn more points!
+</p>
+
+<p class="info">
+🌱 Activities:
+<span id="activities">0</span>
+</p>
+
+<p class="info">
+♻️ Recycling:
+<span id="recycling">0</span> kg
+</p>
+
+</div>
+
+</div>
+
+
+<script>
+
+fetch("rewards")
+.then(response => response.json())
+.then(data => {
+
+    document.getElementById("points").textContent =
+        data.points;
+
+    document.getElementById("badge").textContent =
+        "🏆 " + data.badge;
+
+    document.getElementById("activities").textContent =
+        data.activities;
+
+    document.getElementById("recycling").textContent =
+        data.recycling;
+
+})
+.catch(error => {
+
+    console.error("Error loading rewards:", error);
+
+    document.getElementById("badge").textContent =
+        "Error loading rewards";
+
+});
+
+</script>
+
+</body>
+
+</html>
